@@ -1,0 +1,12 @@
+{
+  "extends": ["airbnb-base", "prettier"],
+  "rules": {
+    "no-console": "off",
+    "no-unused-vars": "warn",
+    "no-underscore-dangle": "off",
+    "global-require": "off",
+    "class-methods-use-this": "off",
+    "padding-line-between-statements": ["warn", { "blankLine": "always", "prev": "*", "next": "export" }]
+  },
+  "ignorePatterns": ["node_modules/", "migrations/"]
+}
