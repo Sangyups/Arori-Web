@@ -11,7 +11,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const url = process.ENV.REACT_APP_SERVER_ADDRESS + process.ENV.REACT_APP_SERVER_PORT + '/api/items/';
+      const url = process.env.REACT_APP_SERVER_ADDRESS + process.env.REACT_APP_SERVER_PORT + '/api/items/';
       try {
         setError(null);
         setItems([]);
