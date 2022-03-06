@@ -12,17 +12,20 @@ const Upload = () => {
     formData.append(children[0].name, children[0].value);
     formData.append(children[2].name, children[2].value);
     formData.append(children[4].name, children[4].value);
-    formData.append(children[6].name, children[6].files[0]);
+    if (children[6].files[0]) {
+      formData.append(children[6].name, children[6].files[0]);
+    }
 
     const config = {
       Headers: {
         'content-type': 'multipart/form-data',
       },
     };
-    const url = process.env.REACT_APP_SERVER_ADDRESS + process.env.REACT_APP_SERVER_PORT + '/api/items';
-    await axios.post(url, formData, config).then;
-
-    navigate('/');
+    const url = process.env.REACT_APP_SERVER_ADDRESS + process.env.REACT_APP_SERVER_PORT + '/api/items/';
+    await axios
+      .post(url, formData, config)
+      .then(() => navigate('/'))
+      .catch((err) => console.log(err));
   };
 
   return (
