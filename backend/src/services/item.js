@@ -1,3 +1,4 @@
+const { ItemNotFoundError } = require('../errors');
 const Item = require('../models/item');
 
 module.exports = class ItemService {
@@ -11,10 +12,16 @@ module.exports = class ItemService {
   }
 
   static async getAllItems() {
-    return Item.findAll({});
+    const items = await Item.findAll({});
+    return items;
   }
 
   static async getItem(itemId) {
-    return Item.findByPk(itemId);
+    const item =
+      (await Item.findByPk(itemId)) ||
+      (() => {
+        throw new ItemNotFoundError();
+      })();
+    return item;
   }
 };

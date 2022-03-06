@@ -22,8 +22,12 @@ module.exports = (app) => {
     res.sendStatus(201);
   });
 
-  route.get('/:itemId', async (req, res) => {
-    const item = await ItemService.getItem(req.params.itemId);
-    res.json(item);
+  route.get('/:itemId', async (req, res, next) => {
+    try {
+      const item = await ItemService.getItem(req.params.itemId);
+      res.json(item);
+    } catch (err) {
+      next(err);
+    }
   });
 };
